@@ -1,20 +1,24 @@
 <script>
-    import axios, { Axios } from "axios"
+	import axios from 'axios';
 
-    let username = '', password = '', name = ''
+	let name = '';
+	let email = '';
+	let password = '';
 
-    $: formSubmit = async () => {
-        let response = await axios.post("http://localhost:8000/api/user/add", {
-            name,username,password
-        });
+	$: formSubmit = async () => {
+		const response = await axios.post('http://localhost:8000/api/users', {
+			name,
+			email,
+			password
+		});
 
-        console.log(response)
-    }   
-
+		console.log(response);
+	};
 </script>
-<form on:submit|preventDefault={ formSubmit } method="post">
-    <input type="text" bind:value={ name } placeholder="Name">
-    <input type="text" bind:value={ username } placeholder="Username">
-    <input type="password" bind:value={ password } placeholder="Password">
-    <input type="submit">
+
+<form on:submit|preventDefault={formSubmit} method="post">
+	<input type="text" bind:value={name} placeholder="Name" />
+	<input type="text" bind:value={email} placeholder="Email" />
+	<input type="password" bind:value={password} placeholder="Password" />
+	<input type="submit" />
 </form>
