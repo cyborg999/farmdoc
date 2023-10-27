@@ -18,7 +18,3 @@ use App\Models\User;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post("api/user/add",[UserController::class, "add"]);
-Route::get('api/user/{id}', function (string $id) {
-    return new UserResource(User::findOrFail($id));
-});
